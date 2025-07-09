@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import AdminSidebar from '../components/dashboard/AdminSidebar';
@@ -7,6 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { Search, Filter, Grid3X3, Table, Plus, Star, MapPin, Phone, Mail, Eye } from 'lucide-react';
 
 const Provider = () => {
@@ -222,10 +224,80 @@ const Provider = () => {
                 <h1 className="text-3xl font-bold text-gray-900">Staff</h1>
                 <p className="text-gray-600 mt-1">Manage your healthcare Staff</p>
               </div>
-              <Button className="bg-gradient-to-r from-blue-600 to-indigo-600">
-                <Plus className="h-4 w-4 mr-2" />
-                Add Staff
-              </Button>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button className="bg-gradient-to-r from-blue-600 to-indigo-600">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Add Staff
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-2xl">
+                  <DialogHeader>
+                    <DialogTitle>Add New Staff Member</DialogTitle>
+                  </DialogHeader>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="staffName">Full Name</Label>
+                        <Input id="staffName" placeholder="Enter full name" />
+                      </div>
+                      <div>
+                        <Label htmlFor="email">Email</Label>
+                        <Input id="email" type="email" placeholder="Enter email address" />
+                      </div>
+                      <div>
+                        <Label htmlFor="phone">Phone</Label>
+                        <Input id="phone" placeholder="Enter phone number" />
+                      </div>
+                      <div>
+                        <Label htmlFor="specialty">Specialty</Label>
+                        <Select>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select specialty" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="cardiology">Cardiology</SelectItem>
+                            <SelectItem value="neurology">Neurology</SelectItem>
+                            <SelectItem value="pediatrics">Pediatrics</SelectItem>
+                            <SelectItem value="orthopedics">Orthopedics</SelectItem>
+                            <SelectItem value="dermatology">Dermatology</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+                    <div className="space-y-4">
+                      <div>
+                        <Label htmlFor="location">Location</Label>
+                        <Input id="location" placeholder="Enter location" />
+                      </div>
+                      <div>
+                        <Label htmlFor="experience">Experience</Label>
+                        <Input id="experience" placeholder="e.g., 5 years" />
+                      </div>
+                      <div>
+                        <Label htmlFor="status">Status</Label>
+                        <Select>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select status" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="active">Active</SelectItem>
+                            <SelectItem value="inactive">Inactive</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor="bio">Bio</Label>
+                        <Textarea id="bio" placeholder="Brief bio..." rows={4} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-end space-x-2 mt-4">
+                    <Button variant="outline">Cancel</Button>
+                    <Button>Add Staff Member</Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </div>
 
             {/* Filters and Search */}
